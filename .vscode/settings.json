@@ -19,12 +19,12 @@
     "editor.formatOnSave": true,
     "editor.formatOnType": true,
   },
-   "[jsonc]" : {
-    "editor.defaultFormatter" : "vscode.json-language-features",
+  "[jsonc]": {
+    "editor.defaultFormatter": "vscode.json-language-features",
     "editor.formatOnSave": true,
     "editor.formatOnType": true,
   },
-   "[json]": {
+  "[json]": {
     "editor.defaultFormatter": "vscode.json-language-features"
   },
   "eslint.validate": [
@@ -34,5 +34,9 @@
     "typescriptreact",
     "typescript"
   ],
-  "cSpell.language": "en,es"
+  "cSpell.language": "en,es",
+  "cSpell.words": [
+    "camelcase",
+    "Nativebase"
+  ]
 }
