@@ -3,7 +3,7 @@ import { useEffect } from 'react'
 import { StyleSheet } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 
-import { NavbarNavbarComponent } from '../components'
+import { NavbarNavbarComponent, StaggerStaggerComponent } from '../components'
 import { bgColor } from '../theme'
 
 const HomeView = () => {
@@ -24,6 +24,7 @@ const HomeView = () => {
         style={[style.areaView, { backgroundColor: bgColor(colorMode) }]}
       >
         <NavbarNavbarComponent />
+        <StaggerStaggerComponent />
       </SafeAreaView>
     </>
   )
