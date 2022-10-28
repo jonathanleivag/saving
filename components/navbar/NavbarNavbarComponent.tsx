@@ -2,7 +2,7 @@ import { Flex, Image, Text } from 'native-base'
 
 const NavbarNavbarComponent = () => {
   return (
-    <Flex direction='row' alignItems={'center'} w='full' h='16'>
+    <Flex paddingX={2} direction='row' alignItems={'center'} w='full' h='16'>
       <Flex direction='row' alignItems='center' h='full'>
         <Image
           source={{
