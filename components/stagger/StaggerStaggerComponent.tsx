@@ -8,10 +8,21 @@ import {
   useDisclose,
   View
 } from 'native-base'
+import { Dispatch, FC, SetStateAction } from 'react'
 import { StyleSheet } from 'react-native'
 
-const StaggerStaggerComponent = () => {
+interface IStaggerComponentProps {
+  setCash: Dispatch<SetStateAction<boolean>>
+}
+
+const StaggerStaggerComponent: FC<IStaggerComponentProps> = ({ setCash }) => {
   const { isOpen, onToggle } = useDisclose()
+
+  const handleSetCash = () => {
+    setCash(true)
+    onToggle()
+  }
+
   return (
     <View style={styles.container}>
       <Box>
@@ -55,6 +66,7 @@ const StaggerStaggerComponent = () => {
             bg='secondary.500'
             colorScheme='red'
             borderRadius='full'
+            onPress={handleSetCash}
             icon={
               <Icon
                 as={MaterialCommunityIcons}
