@@ -43,7 +43,7 @@ const HomeView = () => {
           setShowModal={setShowModal}
           showModal={showModal}
           textButtonOk='Guardar'
-          colorButtonOk='green'
+          colorButtonOk='cyan'
           buttonCancel
           textButtonCancel='Cancelar'
           colorButtonCancel='red'
