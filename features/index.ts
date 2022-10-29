@@ -1,1 +1,5 @@
-export { default as moneyReducer } from './money/moneySlice'
+export {
+  default as moneyReducer,
+  MoneyState,
+  setSalary
+} from './money/moneySlice'

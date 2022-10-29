@@ -1,23 +1,32 @@
-import { StatusBar, Text, useColorMode } from 'native-base'
+import { FormControl, Input, StatusBar, useColorMode } from 'native-base'
 import { useEffect, useState } from 'react'
 import { StyleSheet } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
+import { useDispatch } from 'react-redux'
 
 import {
   ModalComponent,
   NavbarNavbarComponent,
   StaggerStaggerComponent
 } from '../components'
+import { setSalary } from '../features'
 import { bgColor } from '../theme'
 
 const HomeView = () => {
   const { colorMode, setColorMode } = useColorMode()
   const [showModal, setShowModal] = useState(false)
+  const [money, setMoney] = useState<number>(0)
+  const dispatch = useDispatch()
 
   useEffect(() => {
     setColorMode('dark')
     return () => {}
   }, [colorMode])
+
+  const handleOnPressButtonOk = () => {
+    dispatch(setSalary(money))
+  }
+
   return (
     <>
       <StatusBar
@@ -38,8 +47,16 @@ const HomeView = () => {
           buttonCancel
           textButtonCancel='Cancelar'
           colorButtonCancel='red'
+          onPresButtonOk={handleOnPressButtonOk}
         >
-          <Text> body 2 </Text>
+          <FormControl>
+            <FormControl.Label>Sueldo</FormControl.Label>
+            <Input
+              onChangeText={text => setMoney(Number(text))}
+              keyboardAppearance='dark'
+              keyboardType='numeric'
+            />
+          </FormControl>
         </ModalComponent>
       </SafeAreaView>
     </>

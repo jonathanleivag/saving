@@ -18,4 +18,6 @@ export const moneySlice = createSlice({
   }
 })
 
+export const { setSalary } = moneySlice.actions
+
 export default moneySlice.reducer

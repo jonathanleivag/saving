@@ -14,6 +14,7 @@ interface IModalComponentProps {
   textButtonOk?: string
   colorButtonOk?: ColorSchemeType
   variantButtonOk?: TVariantButton
+  onPresButtonOk?: () => void
 }
 
 type TVariantButton = 'solid' | 'outline' | 'ghost' | 'link' | 'unstyled'
@@ -29,8 +30,13 @@ const ModalComponent: FC<IModalComponentProps> = ({
   buttonOk = true,
   textButtonOk = 'Ok',
   colorButtonOk = 'primary',
-  variantButtonOk = 'solid'
+  variantButtonOk = 'solid',
+  onPresButtonOk = () => {}
 }) => {
+  const handleOnPressButtonOk = () => {
+    onPresButtonOk()
+    setShowModal(false)
+  }
   return (
     <Modal isOpen={showModal} onClose={() => setShowModal(false)}>
       <Modal.Content maxWidth='400px'>
@@ -52,9 +58,7 @@ const ModalComponent: FC<IModalComponentProps> = ({
               <Button
                 colorScheme={colorButtonOk}
                 variant={variantButtonOk}
-                onPress={() => {
-                  setShowModal(false)
-                }}
+                onPress={handleOnPressButtonOk}
               >
                 {textButtonOk}
               </Button>
@@ -77,9 +81,7 @@ const ModalComponent: FC<IModalComponentProps> = ({
             <Button
               colorScheme={colorButtonOk}
               variant={variantButtonOk}
-              onPress={() => {
-                setShowModal(false)
-              }}
+              onPress={handleOnPressButtonOk}
             >
               {textButtonOk}
             </Button>
