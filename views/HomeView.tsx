@@ -6,6 +6,7 @@ import { useDispatch } from 'react-redux'
 
 import {
   ModalComponent,
+  MoneyMoneyComponent,
   NavbarNavbarComponent,
   StaggerStaggerComponent
 } from '../components'
@@ -58,6 +59,7 @@ const HomeView = () => {
             />
           </FormControl>
         </ModalComponent>
+        <MoneyMoneyComponent />
       </SafeAreaView>
     </>
   )
