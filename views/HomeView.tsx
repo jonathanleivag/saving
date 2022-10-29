@@ -9,6 +9,7 @@ import {
   ModalComponent,
   MoneyMoneyComponent,
   NavbarNavbarComponent,
+  PieChart,
   StaggerStaggerComponent
 } from '../components'
 import { setSalary } from '../features'
@@ -69,6 +70,7 @@ const HomeView = () => {
           </FormControl>
         </ModalComponent>
         <MoneyMoneyComponent />
+        <PieChart />
       </SafeAreaView>
     </>
   )
