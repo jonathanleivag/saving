@@ -1,5 +1,8 @@
 import { Text } from 'react-native-svg'
 import { PieChart as PieChart0 } from 'react-native-svg-charts'
+import { useSelector } from 'react-redux'
+
+import { RootState } from '../../../../app/store'
 
 const data = [50, 30, 20]
 
@@ -40,10 +43,15 @@ const Label = ({ slices }: any) => {
 }
 
 const PieChart = () => {
+  const salary = useSelector((state: RootState) => state.money.salary)
   return (
-    <PieChart0 style={{ height: 300 }} data={pieData}>
-      <Label />
-    </PieChart0>
+    <>
+      {salary > 0 && (
+        <PieChart0 style={{ height: 300 }} data={pieData}>
+          <Label />
+        </PieChart0>
+      )}
+    </>
   )
 }
 
