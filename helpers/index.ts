@@ -1,1 +1,1 @@
-export * from './formaterMoney'
+export * from './formatterMoney'

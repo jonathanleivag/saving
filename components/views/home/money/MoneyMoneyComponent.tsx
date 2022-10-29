@@ -1,10 +1,11 @@
 import { Flex, Text } from 'native-base'
 import { useEffect } from 'react'
+import { Platform } from 'react-native'
 import { useSelector } from 'react-redux'
 import { useCountUp } from 'use-count-up'
 
 import { RootState } from '../../../../app/store'
-import { formatMoney } from '../../../../helpers'
+import { formatMoney, formatMoneyAndroid } from '../../../../helpers'
 
 const MoneyMoneyComponent = () => {
   const salary = useSelector((state: RootState) => state.money.salary)
@@ -23,7 +24,8 @@ const MoneyMoneyComponent = () => {
   return (
     <Flex justifyContent='center' alignItems='center' w='full' my='10'>
       <Text fontFamily='header' fontSize='4xl'>
-        {formatMoney(Number(value))}
+        {Platform.OS === 'ios' && formatMoney(Number(value))}
+        {Platform.OS === 'android' && `$${formatMoneyAndroid(Number(value))}`}
       </Text>
     </Flex>
   )
