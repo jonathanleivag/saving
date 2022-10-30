@@ -1,24 +1,11 @@
+import { useEffect, useState } from 'react'
 import { Text } from 'react-native-svg'
 import { PieChart as PieChart0 } from 'react-native-svg-charts'
 import { useSelector } from 'react-redux'
 
 import { RootState } from '../../../../app/store'
-
-const data = [50, 30, 20]
-
-const randomColor = () =>
-  ('#' + ((Math.random() * 0xffffff) << 0).toString(16) + '000000').slice(0, 7)
-
-const pieData = data
-  .filter(value => value > 0)
-  .map((value, index) => ({
-    value,
-    svg: {
-      fill: randomColor(),
-      onPress: () => console.log('press', index)
-    },
-    key: `pie-${index}`
-  }))
+import { pieData } from '../../../../helpers'
+import { SectionGraficoComponent } from './section'
 
 const Label = ({ slices }: any) => {
   return slices.map((slice: any, index: any) => {
@@ -44,12 +31,27 @@ const Label = ({ slices }: any) => {
 
 const PieChart = () => {
   const salary = useSelector((state: RootState) => state.money.salary)
+  const { bills, leisure, saving } = useSelector(
+    (state: RootState) => state.percentage
+  )
+  const [dataPieChart, setDataPieChart] = useState()
+
+  useEffect(() => {
+    setDataPieChart(pieData([bills, leisure, saving]) as any)
+    return () => {}
+  }, [bills, leisure, saving])
+
   return (
     <>
       {salary > 0 && (
-        <PieChart0 style={{ height: 300 }} data={pieData}>
-          <Label />
-        </PieChart0>
+        <>
+          {dataPieChart && (
+            <PieChart0 style={{ height: 300 }} data={dataPieChart}>
+              <Label />
+            </PieChart0>
+          )}
+          <SectionGraficoComponent />
+        </>
       )}
     </>
   )
