@@ -19,11 +19,11 @@ const Label = ({ slices }: any) => {
         fill='white'
         textAnchor={'middle'}
         alignmentBaseline={'middle'}
-        fontSize={20}
+        fontSize={15}
       >
-        {index === 0 && 'Gastos'}
-        {index === 1 && 'Ocio'}
-        {index === 2 && 'Ahorro'}
+        {index === 0 && 'Gastos'.toUpperCase()}
+        {index === 1 && 'Ocio'.toUpperCase()}
+        {index === 2 && 'Ahorro'.toUpperCase()}
       </Text>
     )
   })

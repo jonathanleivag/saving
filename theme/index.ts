@@ -86,3 +86,5 @@ export const customTheme = extendTheme({
 
 export const bgColor = (colorMode: ColorMode) =>
   colorMode === 'dark' ? '#003F5E' : '#E3F2F9'
+
+export const colorPie = ['#0b9ff4', '#06aebb', '#62d4b0']

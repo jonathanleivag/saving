@@ -1,11 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit'
 
-import { moneyReducer, percentageReducer } from '../features'
+import { moneyReducer, percentageReducer, selectionReducer } from '../features'
 
 export const store = configureStore({
   reducer: {
     money: moneyReducer,
-    percentage: percentageReducer
+    percentage: percentageReducer,
+    selection: selectionReducer
   }
 })
 

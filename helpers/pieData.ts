@@ -1,5 +1,4 @@
-const randomColor = () =>
-  ('#' + ((Math.random() * 0xffffff) << 0).toString(16) + '000000').slice(0, 7)
+import { colorPie } from '../theme'
 
 export const pieData = (data: [number, number, number]) =>
   data
@@ -7,7 +6,7 @@ export const pieData = (data: [number, number, number]) =>
     .map((value, index) => ({
       value,
       svg: {
-        fill: randomColor(),
+        fill: colorPie[index],
         onPress: () => console.log('press', index)
       },
       key: `pie-${index}`
