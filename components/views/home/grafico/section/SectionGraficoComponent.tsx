@@ -33,9 +33,9 @@ const SectionGraficoComponent = () => {
       h='20'
       my='10'
     >
-      <ButtonGraficoComponent title='Gastos' money={money.bills} />
-      <ButtonGraficoComponent title='Ocio' money={money.leisure} />
-      <ButtonGraficoComponent title='Ahorro' money={money.saving} />
+      <ButtonGraficoComponent title='Gastos' money={money.bills} index={0} />
+      <ButtonGraficoComponent title='Ocio' money={money.leisure} index={1} />
+      <ButtonGraficoComponent title='Ahorro' money={money.saving} index={2} />
     </Flex>
   )
 }
