@@ -1,5 +1,4 @@
-import { Foundation } from '@expo/vector-icons'
-import { FormControl, Icon, Input, StatusBar, useColorMode } from 'native-base'
+import { StatusBar, useColorMode } from 'native-base'
 import { useEffect, useState } from 'react'
 import { StyleSheet } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
@@ -7,6 +6,7 @@ import { useDispatch } from 'react-redux'
 
 import {
   ModalComponent,
+  ModalHomeContentComponent,
   MoneyMoneyComponent,
   NavbarNavbarComponent,
   PieChart,
@@ -53,22 +53,7 @@ const HomeView = () => {
           onPresButtonOk={handleOnPressButtonOk}
           title='Añadir sueldo'
         >
-          <FormControl>
-            <FormControl.Label>Sueldo</FormControl.Label>
-            <Input
-              onChangeText={text => setMoney(Number(text))}
-              keyboardAppearance='dark'
-              keyboardType='numeric'
-              InputLeftElement={
-                <Icon
-                  as={<Foundation name='dollar' />}
-                  size={5}
-                  ml='2'
-                  color='muted.400'
-                />
-              }
-            />
-          </FormControl>
+          <ModalHomeContentComponent money={money} setMoney={setMoney} />
         </ModalComponent>
         <MoneyMoneyComponent />
         <PieChart />
