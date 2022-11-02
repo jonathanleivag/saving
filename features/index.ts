@@ -7,5 +7,6 @@ export {
 export { default as percentageReducer } from './percentage/percentageSlice'
 export {
   default as selectionReducer,
+  setGrafico,
   setSection
 } from './selection/selectionSlice'

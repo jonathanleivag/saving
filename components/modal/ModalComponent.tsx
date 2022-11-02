@@ -15,6 +15,7 @@ interface IModalComponentProps {
   colorButtonOk?: ColorSchemeType
   variantButtonOk?: TVariantButton
   onPresButtonOk?: () => void
+  title?: string
 }
 
 type TVariantButton = 'solid' | 'outline' | 'ghost' | 'link' | 'unstyled'
@@ -31,7 +32,8 @@ const ModalComponent: FC<IModalComponentProps> = ({
   textButtonOk = 'Ok',
   colorButtonOk = 'primary',
   variantButtonOk = 'solid',
-  onPresButtonOk = () => {}
+  onPresButtonOk = () => {},
+  title = 'Modal'
 }) => {
   const handleOnPressButtonOk = () => {
     onPresButtonOk()
@@ -41,7 +43,7 @@ const ModalComponent: FC<IModalComponentProps> = ({
     <Modal isOpen={showModal} onClose={() => setShowModal(false)}>
       <Modal.Content maxWidth='400px'>
         <Modal.CloseButton />
-        <Modal.Header>Contact Us</Modal.Header>
+        <Modal.Header>{title}</Modal.Header>
         <Modal.Body>{children}</Modal.Body>
         <Modal.Footer>
           {buttonCancel && buttonOk && (

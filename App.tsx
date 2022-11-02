@@ -9,6 +9,7 @@ import {
   Montserrat_700Bold,
   useFonts
 } from '@expo-google-fonts/montserrat'
+import { SSRProvider } from '@react-aria/ssr'
 import { NativeBaseProvider } from 'native-base'
 import { Provider } from 'react-redux'
 
@@ -33,9 +34,11 @@ export default function App () {
 
   return (
     <Provider store={store}>
-      <NativeBaseProvider config={configNativeBase} theme={customTheme}>
-        <HomeView />
-      </NativeBaseProvider>
+      <SSRProvider>
+        <NativeBaseProvider config={configNativeBase} theme={customTheme}>
+          <HomeView />
+        </NativeBaseProvider>
+      </SSRProvider>
     </Provider>
   )
 }

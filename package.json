@@ -10,6 +10,8 @@
   },
   "dependencies": {
     "@expo-google-fonts/montserrat": "^0.2.2",
+    "@react-aria/ssr": "^3.3.0",
+    "@react-native-community/slider": "^4.3.2",
     "@reduxjs/toolkit": "^1.8.6",
     "expo": "~46.0.16",
     "expo-app-loading": "~2.1.0",

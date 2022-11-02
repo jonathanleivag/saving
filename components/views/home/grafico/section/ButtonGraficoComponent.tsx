@@ -27,13 +27,15 @@ const ButtonGraficoComponent: FC<IButtonGraficoComponentProps> = ({
   })
   const dispatch = useDispatch()
   const titleSelection = useSelector(
-    (state: RootState) => state.selection.title
+    (state: RootState) => state.selection.selection.title
   )
+
+  const percentage = useSelector((state: RootState) => state.percentage)
 
   useEffect(() => {
     reset()
     return () => {}
-  }, [money])
+  }, [money, percentage.bills, percentage.leisure, percentage.saving])
 
   const handleSelection = () => {
     dispatch(setSection({ title, money }))

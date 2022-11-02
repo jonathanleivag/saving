@@ -51,6 +51,7 @@ const HomeView = () => {
           textButtonCancel='Cancelar'
           colorButtonCancel='red'
           onPresButtonOk={handleOnPressButtonOk}
+          title='Añadir sueldo'
         >
           <FormControl>
             <FormControl.Label>Sueldo</FormControl.Label>
