@@ -53,7 +53,7 @@ const HomeView = () => {
           onPresButtonOk={handleOnPressButtonOk}
           title='Añadir sueldo'
         >
-          <ModalHomeContentComponent money={money} setMoney={setMoney} />
+          <ModalHomeContentComponent setMoney={setMoney} />
         </ModalComponent>
         <MoneyMoneyComponent />
         <PieChart />

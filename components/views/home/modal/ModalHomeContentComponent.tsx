@@ -4,12 +4,10 @@ import { Dispatch, FC, SetStateAction } from 'react'
 
 interface ModalHomeContentComponentProps {
   setMoney: Dispatch<SetStateAction<number>>
-  money: number
 }
 
 const ModalHomeContentComponent: FC<ModalHomeContentComponentProps> = ({
-  setMoney,
-  money
+  setMoney
 }) => {
   return (
     <FormControl>

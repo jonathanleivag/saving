@@ -5,9 +5,11 @@ import { useSelector } from 'react-redux'
 
 import { RootState } from '../../../../../app/store'
 import { colorPie } from '../../../../../theme'
+import { ModalContentBillsComponent } from './ModalContentTextComponent'
 
 const ModalContentGrafico = () => {
   const selection = useSelector((state: RootState) => state.selection.grafico)
+  const money = useSelector((state: RootState) => state.money.salary)
   const [percentage, setPercentage] = useState<number>(0)
 
   useEffect(() => {
@@ -18,19 +20,24 @@ const ModalContentGrafico = () => {
     <>
       {selection.percentage !== 0 && typeof selection.isOpen === 'number' && (
         <>
-          <Text>{Math.round(percentage)}%</Text>
+          <ModalContentBillsComponent money={money} percentage={percentage} />
           <Box alignItems='center' w='100%'>
-            <Stack space={4} alignItems='center' w='75%' maxW='300'>
-              <Slider
-                style={{ width: 200, height: 40 }}
-                onValueChange={value => setPercentage(Math.round(value))}
-                value={percentage}
-                minimumValue={0}
-                maximumValue={100}
-                minimumTrackTintColor={colorPie[selection.isOpen - 1]}
-                maximumTrackTintColor='#000000'
-              />
-            </Stack>
+            {percentage !== 0 && (
+              <Stack space={4} alignItems='center' w='75%' maxW='300'>
+                <Slider
+                  style={{ width: 200, height: 40 }}
+                  onValueChange={value => setPercentage(Math.round(value))}
+                  value={percentage}
+                  minimumValue={5}
+                  maximumValue={100}
+                  minimumTrackTintColor={colorPie[selection.isOpen - 1]}
+                  maximumTrackTintColor='#000000'
+                />
+              </Stack>
+            )}
+            <Text fontFamily='header' fontSize='xs'>
+              El mínimo es de 5%
+            </Text>
           </Box>
         </>
       )}
