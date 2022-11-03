@@ -19,7 +19,7 @@ export const ModalContentBillsComponent: FC<ModalContentAllComponentProps> = ({
 }) => {
   return (
     <>
-      <Text fontSize='md' fontFamily='header' mb='5'>
+      <Text fontSize='md' fontFamily='header' mb='5' textAlign='center'>
         El 50 % para cubrir las necesidades básicas
       </Text>
       <Text fontSize='sm' fontFamily='regular' mb='3'>
@@ -31,45 +31,89 @@ export const ModalContentBillsComponent: FC<ModalContentAllComponentProps> = ({
         sobre todo, cuando no se tiene claro qué es un bien de primera necesidad
         y qué es algo prescindible.
       </Text>
-      <Text fontSize='sm' fontFamily='regular'>
+      <Text fontSize='sm' fontFamily='header' mb='5'>
         Así, el 50 % de lo que se gana debería gastarse en:
       </Text>
-      <Text fontSize='sm' fontFamily='regular'>
-        Así, el 50 % de lo que se gana debería gastarse en:El pago de la
-        hipoteca o alquiler.
+      <Text fontSize='sm' fontFamily='regular' mb='3'>
+        ➼ El pago de la hipoteca o alquiler.
       </Text>
-      <Text fontSize='sm' fontFamily='regular'>
-        Los gastos habituales de una vivienda, tales como la luz, el agua, la
+      <Text fontSize='sm' fontFamily='regular' mb='3'>
+        ➼ Los gastos habituales de una vivienda, tales como la luz, el agua, la
         cuota de comunidad, la recogida de basura, etc.
       </Text>
-      <Text fontSize='sm' fontFamily='regular'>
-        La comida del mes.
+      <Text fontSize='sm' fontFamily='regular' mb='3'>
+        ➼ La comida del mes.
       </Text>
-      <Text fontSize='sm' fontFamily='regular'>
-        El pago de escolaridad en caso de estar estudiando o tener hijos que lo
-        hagan.
+      <Text fontSize='sm' fontFamily='regular' mb='3'>
+        ➼ El pago de escolaridad en caso de estar estudiando o tener hijos que
+        lo hagan.
       </Text>
-      <Text fontSize='sm' fontFamily='regular'>
-        Calzado y vestuario.
+      <Text fontSize='sm' fontFamily='regular' mb='3'>
+        ➼ Calzado y vestuario.
       </Text>
-      <Text fontSize='sm' fontFamily='regular'>
-        Transporte al trabajo.
+      <Text fontSize='sm' fontFamily='regular' mb='3'>
+        ➼ Transporte al trabajo.
       </Text>
-      <Text fontSize='sm' fontFamily='regular'>
+      <Text fontSize='sm' fontFamily='regular' mb='3'>
         Todos estos gastos tienen una cosa en común: son vitales en el día a día
         de la persona.
       </Text>
-      <Text fontSize='sm' fontFamily='regular'>
+      <Text fontSize='sm' fontFamily='regular' my='3'>
         Aun asi, si quieres gastar mas o menos de lo que te recomienda el 50% de
         tus ingresos, puedes hacerlo aquí:
       </Text>
 
-      <Text fontSize='sm' fontFamily='regular'>
-        {`Actualmente tienes un ${percentage}% de tus ingresos para gastos que es de ${
+      <Text fontSize='sm' fontFamily='header'>
+        {`Actualmente tienes un ${percentage}% de tus ingresos para gastos de un total ${
           Platform.OS === 'ios'
             ? formatMoney(calculateBalance(money, percentage))
             : formatMoneyAndroid(calculateBalance(money, percentage))
         }`}
+      </Text>
+    </>
+  )
+}
+
+export const ModalContentLeisureComponent: FC<ModalContentAllComponentProps> = () => {
+  return (
+    <>
+      <Text fontSize='md' fontFamily='header' mb='5' textAlign='center'>
+        El 30 % para el ocio.
+      </Text>
+      <Text fontSize='sm' fontFamily='regular' my='3'>
+        El último grupo de la regla de ahorro 50/20/30 es, con toda seguridad,
+        el que más va a gustar cumplir a pies de la letra. Consiste en destinar
+        el 30% de los ingresos mensuales a aquellos gastos del día a día o
+        puntuales que son prescindibles, pero que aumentan mucho la calidad de
+        vida. Dentro de esta categoría se incluyen todas las actividades de ocio
+        como ir al cine, salir a cenar algunos días fuera de casa o hacer un
+        viaje por vacaciones.
+      </Text>
+      <Text fontSize='sm' fontFamily='regular' my='3'>
+        Aun asi, si quieres gastar mas o menos de lo que te recomienda el 30% de
+        tus ingresos, puedes modificarlo aquí:
+      </Text>
+    </>
+  )
+}
+
+export const ModalContentSavingComponent: FC<ModalContentAllComponentProps> = () => {
+  return (
+    <>
+      <Text fontSize='md' fontFamily='header' mb='5' textAlign='center'>
+        El 20 % para el ahorro.
+      </Text>
+      <Text fontSize='sm' fontFamily='regular' my='3'>
+        Esta parte de la regla de ahorro 50/30/20 es, seguramente, la más
+        dolorosa ya que nada más aplicarla se ve que el dinero ha mermado un
+        20%. Para paliar la sensación de perder poder adquisitivo es importante
+        hacer dos cosas mes a mes. Lo primero es descontar el porcentaje de
+        ahorro nada más recibir la nómina mensual. De esta forma, ya desde el
+        primer día del mes, si se cobra.
+      </Text>
+      <Text fontSize='sm' fontFamily='regular' my='3'>
+        Aun asi, si quieres gastar mas o menos de lo que te recomienda el 30% de
+        tus ingresos, puedes modificarlo aquí:
       </Text>
     </>
   )

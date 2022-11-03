@@ -5,7 +5,11 @@ import { useSelector } from 'react-redux'
 
 import { RootState } from '../../../../../app/store'
 import { colorPie } from '../../../../../theme'
-import { ModalContentBillsComponent } from './ModalContentTextComponent'
+import {
+  ModalContentBillsComponent,
+  ModalContentLeisureComponent,
+  ModalContentSavingComponent
+} from './ModalContentTextComponent'
 
 const ModalContentGrafico = () => {
   const selection = useSelector((state: RootState) => state.selection.grafico)
@@ -20,7 +24,24 @@ const ModalContentGrafico = () => {
     <>
       {selection.percentage !== 0 && typeof selection.isOpen === 'number' && (
         <>
-          <ModalContentBillsComponent money={money} percentage={percentage} />
+          {selection.title === 'Gastos' && (
+            <ModalContentBillsComponent money={money} percentage={percentage} />
+          )}
+
+          {selection.title === 'Ocio' && (
+            <ModalContentLeisureComponent
+              money={money}
+              percentage={percentage}
+            />
+          )}
+
+          {selection.title === 'Ahorro' && (
+            <ModalContentSavingComponent
+              money={money}
+              percentage={percentage}
+            />
+          )}
+
           <Box alignItems='center' w='100%'>
             {percentage !== 0 && (
               <Stack space={4} alignItems='center' w='75%' maxW='300'>
