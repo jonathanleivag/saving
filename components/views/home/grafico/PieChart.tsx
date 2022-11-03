@@ -6,7 +6,8 @@ import { RootState } from '../../../../app/store'
 import { setGrafico } from '../../../../features'
 import { pieData } from '../../../../helpers'
 import { ModalComponent } from '../../../modal'
-import { LabelPercentage, LabelTitle, ModalContentGrafico } from '.'
+import { LabelPercentage, LabelTitle } from './LabelChart'
+import { ModalContentGrafico } from './modal'
 import { SectionGraficoComponent } from './section'
 
 export type TIsOpen = 1 | 2 | 3 | false
