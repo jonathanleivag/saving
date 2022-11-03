@@ -74,7 +74,10 @@ export const ModalContentBillsComponent: FC<ModalContentAllComponentProps> = ({
   )
 }
 
-export const ModalContentLeisureComponent: FC<ModalContentAllComponentProps> = () => {
+export const ModalContentLeisureComponent: FC<ModalContentAllComponentProps> = ({
+  money,
+  percentage
+}) => {
   return (
     <>
       <Text fontSize='md' fontFamily='header' mb='5' textAlign='center'>
@@ -93,11 +96,22 @@ export const ModalContentLeisureComponent: FC<ModalContentAllComponentProps> = (
         Aun asi, si quieres gastar mas o menos de lo que te recomienda el 30% de
         tus ingresos, puedes modificarlo aquí:
       </Text>
+
+      <Text fontSize='sm' fontFamily='header'>
+        {`Actualmente tienes un ${percentage}% de tus ingresos para gastos de un total ${
+          Platform.OS === 'ios'
+            ? formatMoney(calculateBalance(money, percentage))
+            : formatMoneyAndroid(calculateBalance(money, percentage))
+        }`}
+      </Text>
     </>
   )
 }
 
-export const ModalContentSavingComponent: FC<ModalContentAllComponentProps> = () => {
+export const ModalContentSavingComponent: FC<ModalContentAllComponentProps> = ({
+  money,
+  percentage
+}) => {
   return (
     <>
       <Text fontSize='md' fontFamily='header' mb='5' textAlign='center'>
@@ -111,9 +125,28 @@ export const ModalContentSavingComponent: FC<ModalContentAllComponentProps> = ()
         ahorro nada más recibir la nómina mensual. De esta forma, ya desde el
         primer día del mes, si se cobra.
       </Text>
+
+      <Text fontSize='sm' fontFamily='regular' my='3'>
+        Lo segundo que hay que hacer para ver la “pérdida” de dinero mes a mes
+        con buenos ojos es, nada más descontar el 20 % de la nómina, ingresar el
+        dinero correspondiente a ese porcentaje en una cuenta distinta a la
+        cuenta corriente habitual. Por ejemplo, en una cuenta de ahorro con unos
+        buenos intereses. Así se verá como, mes a mes, la cantidad de esa cuenta
+        crece con el dinero ingresado más los intereses, lo cual hará más fácil
+        separar a principio de mes el 20 % necesario para gastos futuros.
+      </Text>
+
       <Text fontSize='sm' fontFamily='regular' my='3'>
         Aun asi, si quieres gastar mas o menos de lo que te recomienda el 30% de
         tus ingresos, puedes modificarlo aquí:
+      </Text>
+
+      <Text fontSize='sm' fontFamily='header'>
+        {`Actualmente tienes un ${percentage}% de tus ingresos para gastos de un total ${
+          Platform.OS === 'ios'
+            ? formatMoney(calculateBalance(money, percentage))
+            : formatMoneyAndroid(calculateBalance(money, percentage))
+        }`}
       </Text>
     </>
   )
