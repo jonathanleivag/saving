@@ -1,7 +1,7 @@
 import { Radio, Stack } from 'native-base'
 import { Dispatch, FC, SetStateAction } from 'react'
 
-import { TNumberRadio } from './ModalContentGrafico'
+import { TNumberRadio } from './ModalContentGraficoComponent'
 
 interface IRedioButtonComponentProps {
   section: 'bills' | 'leisure' | 'saving'
@@ -48,6 +48,9 @@ const RedioButtonComponent: FC<IRedioButtonComponentProps> = ({
             Ahorro
           </Radio>
         )}
+        <Radio value='5' colorScheme='cyan' size='md' my={1}>
+          Ambos (50% / 50%)
+        </Radio>
         <Radio value='4' colorScheme='cyan' size='md' my={1}>
           Personalizado
         </Radio>

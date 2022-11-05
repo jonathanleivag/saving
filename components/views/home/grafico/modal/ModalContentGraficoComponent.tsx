@@ -1,10 +1,12 @@
 import Slider from '@react-native-community/slider'
 import { Box, Stack, Text } from 'native-base'
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import { useSelector } from 'react-redux'
 
 import { RootState } from '../../../../../app/store'
 import { colorPie } from '../../../../../theme'
+import FormPersonalizedComponent from './FormPersonalizedComponent'
 import {
   ModalContentBillsComponent,
   ModalContentLeisureComponent,
@@ -12,20 +14,63 @@ import {
 } from './ModalContentTextComponent'
 import RedioButtonComponent from './RedioButtonComponent'
 
-export type TNumberRadio = 0 | 1 | 2 | 3 | 4
+export type TNumberRadio = 0 | 1 | 2 | 3 | 4 | 5
+
+export interface IInputs {
+  bills: number
+  leisure: number
+  saving: number
+}
 
 const ModalContentGrafico = () => {
   const selection = useSelector((state: RootState) => state.selection.grafico)
   const money = useSelector((state: RootState) => state.money.salary)
   const [percentage, setPercentage] = useState<number>(0)
-  const [, /* selectorRadio */ setSelectorRadio] = useState<TNumberRadio>(0)
+  const [selectorRadio, setSelectorRadio] = useState<TNumberRadio>(0)
+  const [, /* inputs */ setInputs] = useState<IInputs>({
+    bills: 0,
+    leisure: 0,
+    saving: 0
+  })
+  const billsRef = useRef()
+  const leisureRef = useRef()
+  const savingRef = useRef()
 
   useEffect(() => {
     setPercentage(selection.percentage)
+    setSelectorRadio(0)
+    setInputs({
+      bills: 0,
+      leisure: 0,
+      saving: 0
+    })
     return () => {}
   }, [selection.percentage])
+
+  useEffect(() => {
+    if (selectorRadio === 4) {
+      switch (selection.titleOriginal) {
+        case 'bills':
+          // @ts-ignore
+          leisureRef.current.focus()
+          break
+        case 'leisure':
+          // @ts-ignore
+          savingRef.current.focus()
+          break
+        case 'saving':
+          // @ts-ignore
+          billsRef.current.focus()
+          break
+        default:
+          break
+      }
+    }
+    return () => {}
+  }, [selectorRadio])
+
   return (
-    <>
+    <KeyboardAwareScrollView enableOnAndroid enableAutomaticScroll>
       {selection.percentage !== 0 && typeof selection.isOpen === 'number' && (
         <>
           {selection.title === 'Gastos' && (
@@ -78,11 +123,20 @@ const ModalContentGrafico = () => {
                 section={selection.titleOriginal}
                 setSelectorRadio={setSelectorRadio}
               />
+              {selectorRadio === 4 && (
+                <FormPersonalizedComponent
+                  section={selection.titleOriginal}
+                  setInputs={setInputs}
+                  billsRef={billsRef}
+                  leisureRef={leisureRef}
+                  savingRef={savingRef}
+                />
+              )}
             </Box>
           )}
         </>
       )}
-    </>
+    </KeyboardAwareScrollView>
   )
 }
 
