@@ -45,10 +45,12 @@ const PieChart = () => {
         return 'bills'
       case 2:
         return 'leisure'
+      // deepcode ignore DuplicateCaseBody: <please specify a reason of ignoring this>
       case 3:
         return 'saving'
+      // deepcode ignore DuplicateCaseBody: <please specify a reason of ignoring this>
       default:
-        return 'saving'
+        return 'bills'
     }
   }
 
