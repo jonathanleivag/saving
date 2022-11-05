@@ -10,11 +10,15 @@ import {
   ModalContentLeisureComponent,
   ModalContentSavingComponent
 } from './ModalContentTextComponent'
+import RedioButtonComponent from './RedioButtonComponent'
+
+export type TNumberRadio = 0 | 1 | 2 | 3 | 4
 
 const ModalContentGrafico = () => {
   const selection = useSelector((state: RootState) => state.selection.grafico)
   const money = useSelector((state: RootState) => state.money.salary)
   const [percentage, setPercentage] = useState<number>(0)
+  const [, /* selectorRadio */ setSelectorRadio] = useState<TNumberRadio>(0)
 
   useEffect(() => {
     setPercentage(selection.percentage)
@@ -60,6 +64,22 @@ const ModalContentGrafico = () => {
               El mínimo es de 5%
             </Text>
           </Box>
+          {percentage !== selection.percentage && (
+            <Box my='5'>
+              {selection.percentage < percentage && (
+                <Text>¿De donde quiere sacar el porcentaje? </Text>
+              )}
+
+              {selection.percentage > percentage && (
+                <Text>¿A que sector se quieres darle el porcentaje? </Text>
+              )}
+
+              <RedioButtonComponent
+                section={selection.titleOriginal}
+                setSelectorRadio={setSelectorRadio}
+              />
+            </Box>
+          )}
         </>
       )}
     </>

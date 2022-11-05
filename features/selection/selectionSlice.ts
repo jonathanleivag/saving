@@ -10,6 +10,7 @@ export interface SelectionState {
 interface IGrafico {
   percentage: number
   title: string
+  titleOriginal: 'bills' | 'leisure' | 'saving'
   isOpen: TIsOpen
 }
 
@@ -26,6 +27,7 @@ const initialState: SelectionState = {
   grafico: {
     percentage: 0,
     title: '',
+    titleOriginal: 'bills',
     isOpen: false
   }
 }

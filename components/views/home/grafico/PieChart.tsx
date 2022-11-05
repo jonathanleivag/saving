@@ -39,6 +39,19 @@ const PieChart = () => {
     }
   }
 
+  const handleIsTitleOriginal = () => {
+    switch (isOpen) {
+      case 1:
+        return 'bills'
+      case 2:
+        return 'leisure'
+      case 3:
+        return 'saving'
+      default:
+        return 'saving'
+    }
+  }
+
   const handleIsPorcentaje = () => {
     switch (isOpen) {
       case 1:
@@ -57,7 +70,8 @@ const PieChart = () => {
       setGrafico({
         title: handleIsTitle(),
         percentage: handleIsPorcentaje(),
-        isOpen
+        isOpen,
+        titleOriginal: handleIsTitleOriginal()
       })
     )
     return () => {}
