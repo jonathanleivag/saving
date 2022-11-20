@@ -15,8 +15,8 @@ import { Provider } from 'react-redux'
 
 import { store } from './app/store'
 import { configNativeBase } from './config'
+import { HomeRouter } from './router'
 import { customTheme } from './theme'
-import { HomeView } from './views'
 
 export default function App () {
   const [fontsLoaded] = useFonts({
@@ -36,7 +36,7 @@ export default function App () {
     <Provider store={store}>
       <SSRProvider>
         <NativeBaseProvider config={configNativeBase} theme={customTheme}>
-          <HomeView />
+          <HomeRouter />
         </NativeBaseProvider>
       </SSRProvider>
     </Provider>
