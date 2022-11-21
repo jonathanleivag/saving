@@ -42,10 +42,13 @@ export const selectionSlice = createSlice({
     },
     setGrafico: (state, action: PayloadAction<IGrafico>) => {
       state.grafico = action.payload
+    },
+    setIsOpen: (state, action: PayloadAction<TIsOpen>) => {
+      state.grafico.isOpen = action.payload
     }
   }
 })
 
-export const { setSection, setGrafico } = selectionSlice.actions
+export const { setSection, setGrafico, setIsOpen } = selectionSlice.actions
 
 export default selectionSlice.reducer

@@ -1,11 +1,10 @@
 import Slider from '@react-native-community/slider'
-import { Box, Stack, Text } from 'native-base'
+import { Box, ScrollView, Stack, Text } from 'native-base'
 import { useEffect, useRef, useState } from 'react'
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import { useSelector } from 'react-redux'
 
-import { RootState } from '../../../../../app/store'
-import { colorPie } from '../../../../../theme'
+import { RootState } from '../../../../app/store'
+import { colorPie } from '../../../../theme'
 import FormPersonalizedComponent from './FormPersonalizedComponent'
 import {
   ModalContentBillsComponent,
@@ -70,7 +69,7 @@ const ModalContentGrafico = () => {
   }, [selectorRadio])
 
   return (
-    <KeyboardAwareScrollView enableOnAndroid enableAutomaticScroll>
+    <ScrollView w='full' h='90%'>
       {selection.percentage !== 0 && typeof selection.isOpen === 'number' && (
         <>
           {selection.title === 'Gastos' && (
@@ -136,7 +135,7 @@ const ModalContentGrafico = () => {
           )}
         </>
       )}
-    </KeyboardAwareScrollView>
+    </ScrollView>
   )
 }
 

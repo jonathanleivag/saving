@@ -1,26 +1,28 @@
 import { NavigationContainer } from '@react-navigation/native'
-import {
-  createNativeStackNavigator,
-  NativeStackNavigationOptions
-} from '@react-navigation/native-stack'
-import React from 'react'
+import { createNativeStackNavigator } from '@react-navigation/native-stack'
 
-import { HomeView } from '../views'
+import { configAnimationStack, configStack } from '../config'
+import { HomeView, InfoGraficoView } from '../views'
 
 const Stack = createNativeStackNavigator()
-
-const configStack: NativeStackNavigationOptions = {
-  headerShown: false
-}
 
 const HomeRouter = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator screenOptions={configStack}>
-        <Stack.Screen name='Home' component={HomeView} />
+        <Stack.Screen
+          name='Home'
+          component={HomeView}
+          options={configAnimationStack}
+        />
+        <Stack.Screen
+          name='info'
+          component={InfoGraficoView}
+          options={configAnimationStack}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   )
 }
-
+// ScreenComponentType<ParamListBase, "info">
 export default HomeRouter

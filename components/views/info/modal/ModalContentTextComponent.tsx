@@ -6,7 +6,7 @@ import {
   calculateBalance,
   formatMoney,
   formatMoneyAndroid
-} from '../../../../../helpers'
+} from '../../../../helpers'
 
 interface ModalContentAllComponentProps {
   money: number

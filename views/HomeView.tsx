@@ -1,46 +1,32 @@
-import { StatusBar, useColorMode } from 'native-base'
-import { useEffect, useState } from 'react'
-import { StyleSheet } from 'react-native'
-import { SafeAreaView } from 'react-native-safe-area-context'
+import { ParamListBase } from '@react-navigation/native'
+import { NativeStackScreenProps } from '@react-navigation/native-stack'
+import { FC, useState } from 'react'
 import { useDispatch } from 'react-redux'
 
 import {
   ModalComponent,
   ModalHomeContentComponent,
   MoneyMoneyComponent,
-  NavbarNavbarComponent,
   PieChart,
   StaggerStaggerComponent
 } from '../components'
 import { setSalary } from '../features'
-import { bgColor } from '../theme'
+import { HomeLayout } from '../layout'
 
-const HomeView = () => {
-  const { colorMode, setColorMode } = useColorMode()
+type THomeViewProps = NativeStackScreenProps<ParamListBase, 'Home'>
+
+const HomeView: FC<THomeViewProps> = ({ navigation }) => {
   const [showModal, setShowModal] = useState(false)
   const [money, setMoney] = useState<number>(0)
   const dispatch = useDispatch()
-
-  useEffect(() => {
-    setColorMode('dark')
-    return () => {}
-  }, [colorMode])
 
   const handleOnPressButtonOk = () => {
     dispatch(setSalary(money))
   }
 
   return (
-    <>
-      <StatusBar
-        barStyle={colorMode === 'dark' ? 'light-content' : 'dark-content'}
-        translucent
-        backgroundColor='transparent'
-      />
-      <SafeAreaView
-        style={[style.areaView, { backgroundColor: bgColor(colorMode) }]}
-      >
-        <NavbarNavbarComponent />
+    <HomeLayout>
+      <>
         <StaggerStaggerComponent setCash={setShowModal} />
         <ModalComponent
           setShowModal={setShowModal}
@@ -56,15 +42,10 @@ const HomeView = () => {
           <ModalHomeContentComponent setMoney={setMoney} />
         </ModalComponent>
         <MoneyMoneyComponent />
-        <PieChart />
-      </SafeAreaView>
-    </>
+        <PieChart navigation={navigation} />
+      </>
+    </HomeLayout>
   )
 }
-const style = StyleSheet.create({
-  areaView: {
-    flex: 1
-  }
-})
 
 export default HomeView
