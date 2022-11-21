@@ -6,7 +6,13 @@ import {
   InputLeftAddon,
   Stack
 } from 'native-base'
-import { Dispatch, FC, MutableRefObject, SetStateAction } from 'react'
+import {
+  Dispatch,
+  FC,
+  MutableRefObject,
+  SetStateAction,
+  useEffect
+} from 'react'
 
 import { IInputs } from './ModalContentGraficoComponent'
 
@@ -16,6 +22,7 @@ interface IFormPersonalizedComponentProps {
   billsRef: MutableRefObject<any>
   leisureRef: MutableRefObject<any>
   savingRef: MutableRefObject<any>
+  scrollRef: MutableRefObject<undefined>
 }
 
 const FormPersonalizedComponent: FC<IFormPersonalizedComponentProps> = ({
@@ -23,8 +30,15 @@ const FormPersonalizedComponent: FC<IFormPersonalizedComponentProps> = ({
   setInputs,
   billsRef,
   leisureRef,
-  savingRef
+  savingRef,
+  scrollRef
 }) => {
+  useEffect(() => {
+    // @ts-ignore
+    if (scrollRef.current) scrollRef.current.scrollToEnd()
+    return () => {}
+  }, [])
+
   return (
     <FormControl>
       <Container>

@@ -1,5 +1,5 @@
 import Slider from '@react-native-community/slider'
-import { Box, ScrollView, Stack, Text } from 'native-base'
+import { Box, KeyboardAvoidingView, ScrollView, Stack, Text } from 'native-base'
 import { useEffect, useRef, useState } from 'react'
 import { useSelector } from 'react-redux'
 
@@ -34,6 +34,7 @@ const ModalContentGrafico = () => {
   const billsRef = useRef()
   const leisureRef = useRef()
   const savingRef = useRef()
+  const scrollRef = useRef()
 
   useEffect(() => {
     setPercentage(selection.percentage)
@@ -55,7 +56,7 @@ const ModalContentGrafico = () => {
           break
         case 'leisure':
           // @ts-ignore
-          savingRef.current.focus()
+          billsRef.current.focus()
           break
         case 'saving':
           // @ts-ignore
@@ -64,78 +65,95 @@ const ModalContentGrafico = () => {
         default:
           break
       }
+      // @ts-ignore
+      if (scrollRef.current) scrollRef.current.scrollToEnd()
     }
     return () => {}
   }, [selectorRadio])
 
+  useEffect(() => {
+    return () => {}
+  }, [])
+
+  const handleOnTouchEnd = () => {
+    if (scrollRef.current) {
+      // @ts-ignore
+      scrollRef.current.scrollToEnd()
+    }
+  }
+
   return (
-    <ScrollView w='full' h='90%'>
-      {selection.percentage !== 0 && typeof selection.isOpen === 'number' && (
-        <>
-          {selection.title === 'Gastos' && (
-            <ModalContentBillsComponent money={money} percentage={percentage} />
-          )}
-
-          {selection.title === 'Ocio' && (
-            <ModalContentLeisureComponent
-              money={money}
-              percentage={percentage}
-            />
-          )}
-
-          {selection.title === 'Ahorro' && (
-            <ModalContentSavingComponent
-              money={money}
-              percentage={percentage}
-            />
-          )}
-
-          <Box alignItems='center' w='100%'>
-            {percentage !== 0 && (
-              <Stack space={4} alignItems='center' w='75%' maxW='300'>
-                <Slider
-                  style={{ width: 200, height: 40 }}
-                  onValueChange={value => setPercentage(Math.round(value))}
-                  value={percentage}
-                  minimumValue={5}
-                  maximumValue={100}
-                  minimumTrackTintColor={colorPie[selection.isOpen - 1]}
-                  maximumTrackTintColor='#000000'
-                />
-              </Stack>
-            )}
-            <Text fontFamily='header' fontSize='xs'>
-              El mínimo es de 5%
-            </Text>
-          </Box>
-          {percentage !== selection.percentage && (
-            <Box my='5'>
-              {selection.percentage < percentage && (
-                <Text>¿De donde quiere sacar el porcentaje? </Text>
-              )}
-
-              {selection.percentage > percentage && (
-                <Text>¿A que sector se quieres darle el porcentaje? </Text>
-              )}
-
-              <RedioButtonComponent
-                section={selection.titleOriginal}
-                setSelectorRadio={setSelectorRadio}
+    <KeyboardAvoidingView
+      h={{ base: selectorRadio === 4 ? '400' : '90%', lg: 'auto' }}
+    >
+      <ScrollView ref={scrollRef} w='full' h={'90%'}>
+        {selection.percentage !== 0 && typeof selection.isOpen === 'number' && (
+          <>
+            {selection.title === 'Gastos' && (
+              <ModalContentBillsComponent
+                money={money}
+                percentage={percentage}
               />
-              {selectorRadio === 4 && (
-                <FormPersonalizedComponent
-                  section={selection.titleOriginal}
-                  setInputs={setInputs}
-                  billsRef={billsRef}
-                  leisureRef={leisureRef}
-                  savingRef={savingRef}
-                />
+            )}
+            {selection.title === 'Ocio' && (
+              <ModalContentLeisureComponent
+                money={money}
+                percentage={percentage}
+              />
+            )}
+            {selection.title === 'Ahorro' && (
+              <ModalContentSavingComponent
+                money={money}
+                percentage={percentage}
+              />
+            )}
+            <Box alignItems='center' w='100%'>
+              {percentage !== 0 && (
+                <Stack space={4} alignItems='center' w='75%' maxW='300'>
+                  <Slider
+                    style={{ width: 200, height: 40 }}
+                    onValueChange={value => setPercentage(Math.round(value))}
+                    value={percentage}
+                    minimumValue={5}
+                    maximumValue={100}
+                    minimumTrackTintColor={colorPie[selection.isOpen - 1]}
+                    maximumTrackTintColor='#000000'
+                    onTouchEnd={handleOnTouchEnd}
+                  />
+                </Stack>
               )}
+              <Text fontFamily='header' fontSize='xs'>
+                El mínimo es de 5%
+              </Text>
             </Box>
-          )}
-        </>
-      )}
-    </ScrollView>
+            {percentage !== selection.percentage && (
+              <Box my='5'>
+                {selection.percentage < percentage && (
+                  <Text>¿De donde quiere sacar el porcentaje? </Text>
+                )}
+                {selection.percentage > percentage && (
+                  <Text>¿A que sector se quieres darle el porcentaje? </Text>
+                )}
+                <RedioButtonComponent
+                  section={selection.titleOriginal}
+                  setSelectorRadio={setSelectorRadio}
+                />
+                {selectorRadio === 4 && (
+                  <FormPersonalizedComponent
+                    section={selection.titleOriginal}
+                    setInputs={setInputs}
+                    billsRef={billsRef}
+                    leisureRef={leisureRef}
+                    savingRef={savingRef}
+                    scrollRef={scrollRef}
+                  />
+                )}
+              </Box>
+            )}
+          </>
+        )}
+      </ScrollView>
+    </KeyboardAvoidingView>
   )
 }
 
